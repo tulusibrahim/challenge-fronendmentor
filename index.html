@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/6c74545ce9.js" crossorigin="anonymous"></script>
+  <title>Frontend Mentor | Interactive pricing component</title>
+
+</head>
+
+<body id="body">
+  <div id="content">
+    <div id="title">
+      <div id="satu">
+        Simple, traffic-based pricing
+      </div>
+      <div id="dua">
+        Sign-up for our 30-day trial. No credit card required.
+      </div>
+    </div>
+    <div id="core">
+      <div id="desc">
+        <span id="page">
+          Pageviews
+        </span>
+        <span id="month">
+          <span>
+            $
+          </span>
+          &nbsp; /month
+        </span>
+      </div>
+      <div id="input">
+        <input type="range" id="range" min="8" max="36" list="option">
+      </div>
+      <div id="price">
+        Monthly Billing &nbsp;
+        <i class="fas fa-toggle-off" id="toggle"></i>&nbsp;
+        Yearly Billing &nbsp;<span id="diskon">25% discount</span>
+      </div>
+      <div id="checkout">
+        <div>
+          <ul>
+            <li>Unlimited websites</li>
+            <li>100% data ownership</li>
+            <li>Email reports</li>
+          </ul>
+        </div>
+        <div>
+          <button id="btntrial">Start my trial</button>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+  </div>
+</body>
+<script>
+  let input = document.getElementById('range')
+  let page = document.getElementById('page')
+  let month = document.querySelector('#month span')
+  let toggle = document.querySelector(".fas")
+  let diskon = document.getElementById('diskon')
+
+  toggle.addEventListener('click', function () {
+    if (toggle.classList.contains('fa-toggle-on')) {
+      toggle.classList.remove('fa-toggle-on')
+      toggle.classList.add('fa-toggle-off')
+      // diskon.style.display = 'none'
+      // diskon.style.width = '0px'
+      diskon.style.opacity = '0'
+    }
+    else {
+      toggle.classList.add('fa-toggle-on')
+      toggle.classList.remove('fa-toggle-off')
+      diskon.style.display = 'block'
+      diskon.style.width = 'fit-content'
+      diskon.style.opacity = '1'
+    }
+  })
+
+  input.addEventListener('input', function () {
+    month.innerText = "$" + input.value
+    if (input.value >= 8 && input.value <= 12) {
+      page.innerText = "10K Pageviews"
+    }
+    else if (input.value >= 12 && input.value <= 16) {
+      page.innerText = "50K Pageviews"
+    }
+    else if (input.value >= 16 && input.value <= 24) {
+      page.innerText = "100K Pageviews"
+    }
+    else if (input.value >= 24 && input.value < 36) {
+      page.innerText = "500K Pageviews"
+    }
+    else if (input.value == 36) {
+      page.innerText = "1M Pageviews"
+    }
+  })
+</script>
+<style>
+  #month span {
+    font-size: 1.7em;
+  }
+
+  #month {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+  }
+
+  .fas:hover {
+    cursor: pointer;
+  }
+
+  .fas {
+    color: hsl(223, 50%, 87%);
+  }
+
+  #diskon {
+    font-size: x-small;
+    background-color: hsl(14, 92%, 95%);
+    border-radius: 1px;
+    color: hsl(15, 100%, 70%);
+    width: fit-content;
+    transition: .5s;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  #btntrial:hover {
+    transform: scale(1.02);
+    box-shadow: 2px 2px 10px grey;
+  }
+
+  #btntrial {
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 50px;
+    background-color: hsl(227, 35%, 25%);
+    color: hsl(226, 100%, 87%);
+    cursor: pointer;
+    transition: .2s;
+  }
+
+  #checkout div ul li {
+    list-style-image: url('./images/icon-check.svg');
+    font-size: small;
+  }
+
+
+
+  input[type=range]:hover {
+    cursor: pointer;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: #E08D79;
+    filter: drop-shadow(0px 0px 4px #c47d6c);
+    /* background: url('./images/icon-slider.svg');
+    background-repeat: no-repeat;
+    background-position: center; */
+  }
+
+  input[type=range] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 70%;
+    height: 10px;
+    background-color: #49416D;
+    border-radius: 10px;
+    outline: none;
+  }
+
+  #title #dua {
+    font-weight: 600;
+  }
+
+  #title #satu {
+    font-size: xx-large;
+    font-weight: 800;
+  }
+
+  #title {
+    text-align: center;
+    font-size: small;
+    background-image: url('./images/pattern-circles.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  #input {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #checkout {
+    height: 25%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    color: hsl(225, 20%, 60%);
+  }
+
+  @media screen and (max-width: 375px) {
+    #checkout {
+      flex-direction: column;
+    }
+  }
+
+  #price {
+    height: 25%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: medium;
+    color: hsl(225, 20%, 60%);
+  }
+
+  #desc {
+    height: 25%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: large;
+    color: hsl(225, 20%, 60%);
+  }
+
+  #core {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0px 10px 20px wheat;
+  }
+
+  #content {
+    width: 70vw;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    background-image: url('./images/bg-pattern.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-shadow: 5px 5px 10px rgb(145, 142, 142);
+  }
+
+  #body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Manrope', sans-serif;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+</style>
+
+</html>
